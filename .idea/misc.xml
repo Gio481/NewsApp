@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.1" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_favorite.xml" value="0.1" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_lsearch.xml" value="0.1" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_saved_news.xml" value="0.1" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_search.xml" value="0.1" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/menu_items_background.xml" value="0.1255" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/news_article_layout.xml" value="0.1335" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/splash_screen_icon.xml" value="0.1355" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/text_view_background.xml" value="0.1" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout-v26/fragment_news_detail.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/activity_main.xml" value="0.152" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_articles.xml" value="0.18703703703703703" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_news.xml" value="0.25" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_news_detail.xml" value="0.2" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_saved_news.xml" value="0.2" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_search_news.xml" value="0.16799999999999998" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_splash_screen.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/news_row_layout.xml" value="0.2" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
