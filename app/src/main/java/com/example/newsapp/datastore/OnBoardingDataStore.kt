@@ -15,22 +15,21 @@ class OnBoardingDataStore(context: Context) {
     )
     private val dataStore: DataStore<Preferences> = context.dataStore
 
-    suspend fun saveValue(key: String, value: String) {
+    suspend fun saveValue(key: String, value: Boolean) {
         dataStore.edit { preference ->
-            preference[stringPreferencesKey(key)] = value
+            preference[stringPreferencesKey(key)] = value.toString()
         }
     }
 
-    fun getValue(key: String): Flow<String> {
+    fun getValue(key: String): Flow<String?> {
         val preferences = dataStore.data.map { preference ->
-            preference[stringPreferencesKey(key)] ?: VALUE_NOT_FOUND
+            preference[stringPreferencesKey(key)]
         }
         return preferences
     }
 
 
     companion object {
-        private const val VALUE_NOT_FOUND = "Value not found"
         private const val PREFERENCE_DATA_STORE_NAME = "onBoardingScreenDataStore"
     }
 }

@@ -2,6 +2,7 @@ package com.example.newsapp.ui.news_detail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import com.example.newsapp.databinding.FragmentNewsDetailBinding
 import com.example.newsapp.ui.base.BaseFragment
@@ -12,9 +13,22 @@ class NewsDetailFragment : BaseFragment<FragmentNewsDetailBinding, NewsDetailVie
     override val bindingInflater: (inflater: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean) -> FragmentNewsDetailBinding
         get() = FragmentNewsDetailBinding::inflate
 
-    override fun init() {
+    override fun getViewModelClass(): Class<NewsDetailViewModel> = NewsDetailViewModel::class.java
 
+    override fun init() {
         setListener()
+        createArticle()
+    }
+
+    private fun checkArticle() {
+        if (args.article.url in newsViewModel.urlList.value!!) {
+            Toast.makeText(requireContext(), "gio", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(requireContext(), "nika", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun createArticle() {
         with(binding) {
             newsNameTextView.text = args.article.source.name
             newsTitleTextView.text = args.article.title
@@ -25,10 +39,8 @@ class NewsDetailFragment : BaseFragment<FragmentNewsDetailBinding, NewsDetailVie
 
     private fun setListener() {
         binding.favoriteNewsActionButton.setOnClickListener {
-            newsViewModel.insertArticle(args.article)
+            newsViewModel.determineOperation(args.article)
+            checkArticle()
         }
     }
-
-    override fun getViewModelClass(): Class<NewsDetailViewModel> = NewsDetailViewModel::class.java
-
 }

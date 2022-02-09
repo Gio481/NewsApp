@@ -28,9 +28,10 @@ class MainActivity : AppCompatActivity() {
     private fun setListener() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.splashScreenFragment -> binding.bottomNavView.isVisible=false
-                R.id.newsDetailFragment -> binding.bottomNavView.isVisible=false
-                else -> binding.bottomNavView.isVisible=true
+                R.id.splashScreenFragment -> binding.bottomNavView.isVisible = false
+                R.id.newsDetailFragment -> binding.bottomNavView.isVisible = false
+                R.id.onBoardingFragment -> binding.bottomNavView.isVisible = false
+                else -> binding.bottomNavView.isVisible = true
             }
         }
     }

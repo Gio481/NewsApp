@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:gbp="http://schemas.android.com/apk/res-auto"
     android:background="@color/fragments_background_color"
     tools:context=".ui.news.NewsFragment">
+
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/businessNewsTextView"
@@ -15,7 +17,7 @@
         android:layout_marginTop="27dp"
         android:gravity="center"
         android:text="business"
-        android:textColor="#5E5C5B"
+        android:textColor="@color/app_items_color"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,9 +67,19 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/newsRecyclerView"
-        android:layout_marginTop="58dp"
+        android:layout_marginTop="78dp"
         android:layout_marginHorizontal="20dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
+    <com.jpardogo.android.googleprogressbar.library.GoogleProgressBar
+        android:id="@+id/customProgressBar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        gbp:type="chrome_floating_circles"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

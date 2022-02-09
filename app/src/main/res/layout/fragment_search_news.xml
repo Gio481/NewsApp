@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:gbp="http://schemas.android.com/apk/res-auto"
     android:background="@color/fragments_background_color"
     tools:context=".ui.search_news.SearchNewsFragment">
 
@@ -39,8 +40,18 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/view_dynamic_size"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchNewsEditText" />
 
+    <com.jpardogo.android.googleprogressbar.library.GoogleProgressBar
+        android:id="@+id/customProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        gbp:type="chrome_floating_circles" />
 </androidx.constraintlayout.widget.ConstraintLayout>

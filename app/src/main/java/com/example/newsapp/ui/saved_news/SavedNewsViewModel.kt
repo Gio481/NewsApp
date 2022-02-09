@@ -17,11 +17,8 @@ class SavedNewsViewModel : ViewModel() {
     private val _allNewsLiveData: MutableLiveData<List<Articles>> = MutableLiveData()
     val allNewsLiveData: LiveData<List<Articles>> get() = _allNewsLiveData
 
-    init {
-        getAllNews()
-    }
 
-    private fun getAllNews() {
+     fun getAllNews() {
         viewModelScope.launch(Dispatchers.IO) {
             _allNewsLiveData.postValue(repository.gelAllNews())
         }

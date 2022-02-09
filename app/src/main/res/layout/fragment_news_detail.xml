@@ -85,7 +85,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginBottom="24dp"
-        android:src="@drawable/ic_favorite"
+        app:srcCompat="@drawable/ic_favorite"
         app:backgroundTint="#FF4B5C"
         app:fabCustomSize="60dp"
         app:layout_constraintBottom_toBottomOf="parent"

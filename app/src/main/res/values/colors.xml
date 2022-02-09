@@ -10,4 +10,5 @@
     <color name="fragments_background_color">#FFEFEF</color>
     <color name="app_items_color">#FF4E4E</color>
     <color name="api_category_color">#5E5C5B</color>
+    <color name="favorite">#E11616</color>
 </resources>

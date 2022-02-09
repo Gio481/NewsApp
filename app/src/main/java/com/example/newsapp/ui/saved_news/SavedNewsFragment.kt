@@ -1,17 +1,15 @@
 package com.example.newsapp.ui.saved_news
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.newsapp.R
 import com.example.newsapp.databinding.FragmentSavedNewsBinding
 import com.example.newsapp.model.Articles
 import com.example.newsapp.ui.adapter.NewsAdapter
 import com.example.newsapp.ui.adapter.OnItemClickListener
 import com.example.newsapp.ui.base.BaseFragment
-import com.example.newsapp.util.Constants.ARTICLES_KEY
 
 class SavedNewsFragment : BaseFragment<FragmentSavedNewsBinding, SavedNewsViewModel>(),
     OnItemClickListener {
@@ -22,6 +20,7 @@ class SavedNewsFragment : BaseFragment<FragmentSavedNewsBinding, SavedNewsViewMo
 
     private val newsAdapter by lazy { NewsAdapter(this) }
     override fun init() {
+        newsViewModel.getAllNews()
         setUpRecyclerView()
         observeNewsLiveData()
     }
@@ -39,11 +38,10 @@ class SavedNewsFragment : BaseFragment<FragmentSavedNewsBinding, SavedNewsViewMo
 
         }
     }
-
     override fun onItemCLick(article: Articles) {
         findNavController().navigate(
-            R.id.action_savedNewsFragment_to_newsDetailFragment,
-            Bundle().apply { putParcelable(ARTICLES_KEY, article) }
+            SavedNewsFragmentDirections.actionSavedNewsFragmentToNewsDetailFragment(article)
+
         )
     }
 

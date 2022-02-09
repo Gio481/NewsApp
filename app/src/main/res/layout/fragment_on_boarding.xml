@@ -4,14 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fragments_background_color"
-    tools:context=".ui.saved_news.SavedNewsFragment">
+    tools:context=".ui.on_boarding.OnBoardingFragment">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/savedNewsRecyclerView"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/onBoardingViewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="31dp"/>
+        android:layout_height="match_parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

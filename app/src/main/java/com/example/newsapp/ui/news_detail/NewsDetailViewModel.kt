@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.newsapp.App
 import com.example.newsapp.model.Articles
-import com.example.newsapp.model.NewsResponse
 import com.example.newsapp.repository.news_detail.NewsDetailRepository
 import com.example.newsapp.repository.news_detail.NewsDetailRepositoryImpl
 import kotlinx.coroutines.Dispatchers
@@ -14,16 +13,35 @@ import kotlinx.coroutines.launch
 
 class NewsDetailViewModel : ViewModel() {
     private val repository: NewsDetailRepository by lazy { NewsDetailRepositoryImpl(App.db.newsDao()) }
+    private val _isFavoriteItemLiveData: MutableLiveData<List<String>> = MutableLiveData()
+    val urlList: LiveData<List<String>> = _isFavoriteItemLiveData
 
-    private val _successNewsLiveData: MutableLiveData<Articles> = MutableLiveData()
-    val successNewsLiveData: LiveData<Articles> get() = _successNewsLiveData
+    init {
+        viewModelScope.launch {
+            _isFavoriteItemLiveData.postValue(repository.getNewsUrl())
+        }
+    }
 
-    private val _errorLiveData: MutableLiveData<String> = MutableLiveData()
-    val errorLiveData: MutableLiveData<String> get() = _errorLiveData
+    fun determineOperation(articles: Articles) {
+        if (!articles.isFavorite) {
+            insertArticle(articles)
+        } else {
+            deleteArticles(articles)
+        }
+    }
 
-    fun insertArticle(articles: Articles) {
+    private fun insertArticle(articles: Articles) {
+        articles.isFavorite = !articles.isFavorite
         viewModelScope.launch(Dispatchers.IO) {
             repository.insertArticles(articles)
+        }
+    }
+
+    private fun deleteArticles(articles: Articles) {
+        articles.isFavorite = !articles.isFavorite
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteArticle(articles)
+            repository.updateArticle(articles)
 
         }
     }
