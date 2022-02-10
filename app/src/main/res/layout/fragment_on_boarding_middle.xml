@@ -10,34 +10,45 @@
         android:id="@+id/onBoardingMiddleImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="@dimen/on_boarding_image_margin_top"
         android:src="@drawable/on_boarding"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:layout_width="@dimen/on_boarding_middle_icon_size"
+        android:layout_height="@dimen/on_boarding_middle_icon_size"
+        android:layout_marginEnd="@dimen/on_boarding_icon_margin_end"
+        android:layout_marginBottom="@dimen/on_boarding_icon_margin_bottom"
+        android:background="@drawable/ic_search"
+        android:backgroundTint="@color/on_boarding_icon_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginStart="@dimen/on_boarding_text_view_margin_start"
+        android:layout_marginTop="@dimen/on_boarding_text_view_margin_top"
+        android:layout_marginEnd="@dimen/on_boarding_text_view_margin_end"
         android:text="@string/on_boarding_middle_text"
-        android:textColor="#000000"
-        android:textSize="32sp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/on_boarding_text_view_size"
         app:layout_constraintTop_toBottomOf="@id/onBoardingMiddleImageView" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/middleOnBoardingNextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="@dimen/on_boarding_button_margin_end"
+        android:layout_marginBottom="@dimen/on_boarding_button_margin_bottom"
         android:background="@android:color/transparent"
-        android:text="next"
+        android:text="@string/on_boarding_next_button_text"
         android:textAllCaps="false"
-        android:textColor="#FF4B5C"
-        android:textSize="24sp"
+        android:textColor="@color/app_items_dark"
+        android:textSize="@dimen/on_boarding_button_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

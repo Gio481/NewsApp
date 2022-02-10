@@ -1,4 +1,4 @@
-package com.example.newsapp.repository.save_news
+package com.example.newsapp.repositories.save_news
 
 import com.example.newsapp.db.dao.NewsDao
 import com.example.newsapp.model.Articles

@@ -7,4 +7,12 @@
     <string name="on_boarding_start_text">Save most relevant article to access anytime</string>
     <string name="on_boarding_middle_text">Search articles with keywords</string>
     <string name="on_boarding_end_text">Save most relevant article to access anytime</string>
+    <string name="category_business_text">business</string>
+    <string name="category_sport_text">sports</string>
+    <string name="category_tech_text">technology</string>
+    <string name="category_science_text">science</string>
+    <string name="on_boarding_finish_button_text">finish</string>
+    <string name="on_boarding_next_button_text">next</string>
+    <string name="search_edit_text_hint">some title</string>
+    <string name="splash_scree_text">Welcome</string>
 </resources>

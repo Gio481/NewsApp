@@ -1,4 +1,4 @@
-package com.example.newsapp.repository.splash_screen
+package com.example.newsapp.repositories.splash_screen
 
 import com.example.newsapp.datastore.OnBoardingDataStore
 import kotlinx.coroutines.flow.Flow

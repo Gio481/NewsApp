@@ -15,6 +15,6 @@
     <item
         android:id="@+id/savedNewsFragment"
         android:enabled="true"
-        android:icon="@drawable/ic_saved_news"
+        android:icon="@drawable/ic_save"
         android:title="@string/saved_fragment_text" />
 </menu>

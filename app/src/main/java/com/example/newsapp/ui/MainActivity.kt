@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.newsapp.R
 import com.example.newsapp.databinding.ActivityMainBinding
@@ -28,10 +29,10 @@ class MainActivity : AppCompatActivity() {
     private fun setListener() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.splashScreenFragment -> binding.bottomNavView.isVisible = false
-                R.id.newsDetailFragment -> binding.bottomNavView.isVisible = false
-                R.id.onBoardingFragment -> binding.bottomNavView.isVisible = false
-                else -> binding.bottomNavView.isVisible = true
+                R.id.splashScreenFragment -> binding.bottomAppBar.isVisible = false
+                R.id.newsDetailFragment -> binding.bottomAppBar.isVisible = false
+                R.id.onBoardingFragment -> binding.bottomAppBar.isVisible = false
+                else -> binding.bottomAppBar.isVisible = true
             }
         }
     }

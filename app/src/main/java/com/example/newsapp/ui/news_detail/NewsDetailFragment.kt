@@ -2,29 +2,38 @@ package com.example.newsapp.ui.news_detail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.newsapp.R
 import com.example.newsapp.databinding.FragmentNewsDetailBinding
 import com.example.newsapp.ui.base.BaseFragment
 import com.example.newsapp.util.extensions.image_view.setImage
+import kotlinx.coroutines.launch
 
 class NewsDetailFragment : BaseFragment<FragmentNewsDetailBinding, NewsDetailViewModel>() {
     private val args: NewsDetailFragmentArgs by navArgs()
+
     override val bindingInflater: (inflater: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean) -> FragmentNewsDetailBinding
         get() = FragmentNewsDetailBinding::inflate
+
+    private lateinit var navController: NavController
+
 
     override fun getViewModelClass(): Class<NewsDetailViewModel> = NewsDetailViewModel::class.java
 
     override fun init() {
-        setListener()
+        newsViewModel.checkArticle(args.article.url)
+        setUpToolBar()
+        observeButtonBackgroundLiveData()
         createArticle()
+        setListener()
     }
 
-    private fun checkArticle() {
-        if (args.article.url in newsViewModel.urlList.value!!) {
-            Toast.makeText(requireContext(), "gio", Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(requireContext(), "nika", Toast.LENGTH_SHORT).show()
+    private fun observeButtonBackgroundLiveData() {
+        newsViewModel.backgroundLiveData.observe(viewLifecycleOwner) {
+            binding.favoriteNewsActionButton.setImageResource(it)
         }
     }
 
@@ -39,8 +48,21 @@ class NewsDetailFragment : BaseFragment<FragmentNewsDetailBinding, NewsDetailVie
 
     private fun setListener() {
         binding.favoriteNewsActionButton.setOnClickListener {
-            newsViewModel.determineOperation(args.article)
-            checkArticle()
+            lifecycleScope.launch {
+                if (newsViewModel.checkSavedArticle(args.article.url)) {
+                    binding.favoriteNewsActionButton.setImageResource(R.drawable.ic_favorite)
+                } else {
+                    binding.favoriteNewsActionButton.setImageResource(R.drawable.ic_delete)
+                }
+            }
+            newsViewModel.determineOperation(args.article, args.article.url)
+
+        }
+    }
+
+    private fun setUpToolBar() {
+        binding.newsDetailBackButton.setOnClickListener {
+            findNavController().navigateUp()
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.newsapp.api
+package com.example.newsapp.api.interceptor
 
 import com.example.newsapp.util.NetworkException
 import okhttp3.Interceptor
@@ -14,7 +14,7 @@ class NetworkInterceptor:Interceptor {
 
     private fun isConnected(): Boolean {
         return try {
-            Runtime.getRuntime().exec(PING).waitFor() == 0
+            Runtime.getRuntime().exec(PING).waitFor() == PING_TIME
         } catch (e: Exception) {
             false
         }
@@ -22,6 +22,7 @@ class NetworkInterceptor:Interceptor {
 
     companion object {
         private const val PING = "ping -c 1 google.com"
+        private const val PING_TIME = 0
     }
 
 
