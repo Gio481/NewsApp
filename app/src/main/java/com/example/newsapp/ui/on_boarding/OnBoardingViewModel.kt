@@ -12,11 +12,7 @@ import kotlinx.coroutines.launch
 class OnBoardingViewModel : ViewModel() {
     private val repository: OnBoardingRepository by lazy { OnBoardingRepositoryImpl(App.dataStore) }
 
-    init {
-        saveValue()
-    }
-
-    private fun saveValue() {
+    fun saveValue() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.saveValue(ON_BOARDING_SCREEN_KEY, true)
         }

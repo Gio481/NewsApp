@@ -5,18 +5,16 @@ import android.view.ViewGroup
 import com.example.newsapp.databinding.FragmentOnBoardingMiddleBinding
 import com.example.newsapp.ui.on_boarding.screens.base.BaseOnBoardingFragment
 
-class OnBoardingMiddleFragment : BaseOnBoardingFragment<FragmentOnBoardingMiddleBinding>() {
+class OnBoardingMiddleFragment(private val doSomething: () -> Unit) :
+    BaseOnBoardingFragment<FragmentOnBoardingMiddleBinding>() {
     override val bindingInflater: (inflater: LayoutInflater, container: ViewGroup?, attachRoot: Boolean) -> FragmentOnBoardingMiddleBinding
         get() = FragmentOnBoardingMiddleBinding::inflate
 
     override fun init() {
         binding.middleOnBoardingNextButton.setOnClickListener {
-            action.invoke()
-
+            doSomething.invoke()
         }
     }
 
-    companion object {
-        lateinit var action: () -> Unit
-    }
+
 }

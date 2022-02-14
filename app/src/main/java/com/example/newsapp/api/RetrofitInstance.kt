@@ -19,7 +19,9 @@ object RetrofitInstance {
         return OkHttpClient.Builder().addInterceptor(QueryInterceptor()).build()
     }
 
+
     val newsApi:NewsApi by lazy {
         retrofit.create(NewsApi::class.java)
     }
 }
+

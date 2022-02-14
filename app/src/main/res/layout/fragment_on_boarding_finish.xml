@@ -10,27 +10,25 @@
         android:id="@+id/onBoardingStartImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/on_boarding_image_margin_top"
         android:src="@drawable/on_boarding"
+        app:layout_constraintBottom_toTopOf="@id/onBoardingTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:layout_marginBottom="@dimen/on_boarding_icon_margin_bottom"
-        android:layout_marginEnd="@dimen/on_boarding_icon_margin_end"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="@dimen/on_boarding_finish_icon_sizes"
+        app:layout_constraintBottom_toBottomOf="@id/onBoardingStartImageView"
         android:background="@drawable/finish_on_boarding_icon"
         android:layout_width="@dimen/on_boarding_finish_icon_sizes"
-        android:layout_height="@dimen/on_boarding_finish_icon_sizes"/>
+        app:layout_constraintEnd_toEndOf="@id/onBoardingStartImageView" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/onBoardingTextView"
         android:layout_width="match_parent"
+        app:layout_constraintBottom_toTopOf="@id/finishOnBoardingButton"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/on_boarding_text_view_margin_start"
-        android:layout_marginTop="@dimen/on_boarding_text_view_margin_top"
         android:layout_marginEnd="@dimen/on_boarding_text_view_margin_end"
         android:text="@string/on_boarding_end_text"
         android:textColor="@color/black"

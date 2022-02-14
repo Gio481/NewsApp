@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.databinding.CategoryItemLayoutBinding
+import com.example.newsapp.ui.news.adapter.model.Category
 import com.example.newsapp.util.ItemsDiffUtil
 
 
@@ -24,19 +25,19 @@ class CategoryAdapter(private val onCategoryItemListener: OnCategoryItemListener
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.onBind(getItem(position), onCategoryItemListener)
+        holder.onBind(getItem(position))
         with(holder.binding) {
             categoryTextView.setOnClickListener {
-                selectedPosition = holder.absoluteAdapterPosition
+                selectedPosition = holder.adapterPosition
                 onCategoryItemListener.onCategoryItemClick(getItem(position).category)
                 notifyDataSetChanged()
             }
-            if (holder.absoluteAdapterPosition == selectedPosition) {
+            if (holder.adapterPosition == selectedPosition) {
                 categoryTextView.setTextColor(Color.parseColor("#FF4B5C"))
-                categoryTextView.paint.isUnderlineText=true
+                categoryTextView.paint.isUnderlineText = true
             } else {
                 categoryTextView.setTextColor(Color.parseColor("#5E5C5B"))
-                categoryTextView.paint.isUnderlineText=false
+                categoryTextView.paint.isUnderlineText = false
             }
         }
     }
@@ -45,7 +46,7 @@ class CategoryAdapter(private val onCategoryItemListener: OnCategoryItemListener
         RecyclerView.ViewHolder(binding.root) {
 
 
-        fun onBind(category: Category, onCategoryItemListener: OnCategoryItemListener) {
+        fun onBind(category: Category) {
             with(binding) {
                 categoryTextView.text = category.category
             }

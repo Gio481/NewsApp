@@ -11,7 +11,8 @@ import com.example.newsapp.util.Resources
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class NewsVideModel : ViewModel() {
+class NewsViewModel : ViewModel() {
+
     private val repository: NewsRepository by lazy { NewsRepositoryImpl() }
 
     private val _successNewsLiveData: MutableLiveData<NewsResponse> = MutableLiveData()
@@ -20,31 +21,14 @@ class NewsVideModel : ViewModel() {
     private val _errorLiveData: MutableLiveData<String> = MutableLiveData()
     val errorLiveData: MutableLiveData<String> get() = _errorLiveData
 
-    private val _categoryLiveData: MutableLiveData<String> = MutableLiveData()
-    val categoryLiveData: LiveData<String> = _categoryLiveData
-
     private var pageNumber = 1
-
-    init {
-        _categoryLiveData.postValue(DEFAULT_API_CATEGORY)
-        getCustomCategoryNews(DEFAULT_API_CATEGORY)
-    }
-
-    fun saveCategory(text: String) {
-        _categoryLiveData.postValue(text)
-    }
 
     fun getCustomCategoryNews(category: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            when (val response =
-                repository.getCustomCategoryNews(pageNumber, category = category)) {
+            when(val response = repository.getCustomCategoryNews(category = category, page = pageNumber)){
                 is Resources.Success -> _successNewsLiveData.postValue(response.data!!)
                 is Resources.Error -> _errorLiveData.postValue(response.message!!)
             }
         }
-    }
-
-    companion object {
-        private const val DEFAULT_API_CATEGORY = "business"
     }
 }

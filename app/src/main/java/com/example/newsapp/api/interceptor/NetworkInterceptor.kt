@@ -24,6 +24,4 @@ class NetworkInterceptor:Interceptor {
         private const val PING = "ping -c 1 google.com"
         private const val PING_TIME = 0
     }
-
-
 }

@@ -30,8 +30,6 @@
     <dimen name="news_detail_description_text_view_size">24sp</dimen>
     <dimen name="news_detail_favorite_button_size">60dp</dimen>
     <dimen name="news_detail_favorite_button_margin_bottom">24dp</dimen>
-    <dimen name="on_boarding_image_margin_top">112dp</dimen>
-    <dimen name="on_boarding_text_view_margin_top">88dp</dimen>
     <dimen name="on_boarding_text_view_margin_start">52dp</dimen>
     <dimen name="on_boarding_text_view_margin_end">15dp</dimen>
     <dimen name="on_boarding_text_view_size">32sp</dimen>
@@ -39,8 +37,6 @@
     <dimen name="on_boarding_button_margin_end">16dp</dimen>
     <dimen name="on_boarding_button_margin_bottom">24dp</dimen>
     <dimen name="on_boarding_finish_icon_sizes">55dp</dimen>
-    <dimen name="on_boarding_icon_margin_end">75dp</dimen>
-    <dimen name="on_boarding_icon_margin_bottom">50dp</dimen>
     <dimen name="on_boarding_middle_icon_size">75dp</dimen>
     <dimen name="save_recycler_view_margin_top">31dp</dimen>
     <dimen name="search_edit_text_margin_start">49dp</dimen>
@@ -71,4 +67,7 @@
     <dimen name="news_article_layout_radius">8dp</dimen>
     <dimen name="category_recycler_height">70dp</dimen>
     <dimen name="bottom_nav_item_margin_end">15dp</dimen>
+    <dimen name="news_row_layout_image_sizes">66dp</dimen>
+    <dimen name="news_row_layout_image_margin_start">19dp</dimen>
+    <dimen name="news_row_layout_image_margin_top">51dp</dimen>
 </resources>

@@ -9,7 +9,6 @@ import com.example.newsapp.databinding.FragmentSearchNewsBinding
 import com.example.newsapp.model.Articles
 import com.example.newsapp.ui.adapter.NewsAdapter
 import com.example.newsapp.ui.adapter.OnItemClickListener
-import com.example.newsapp.ui.adapter.OnScrollListener
 import com.example.newsapp.ui.base.BaseFragment
 import com.example.newsapp.util.extensions.string.showToast
 
@@ -31,8 +30,8 @@ class SearchNewsFragment : BaseFragment<FragmentSearchNewsBinding, SearchNewsVie
 
     private fun searchNews() {
         binding.searchNewsEditText.addTextChangedListener {
-            isShownProgressBar(true)
-            newsViewModel.searchNews(it.toString())
+                isShownProgressBar(it!!.isNotBlank())
+                newsViewModel.searchNews(it.toString())
         }
     }
 
@@ -54,13 +53,6 @@ class SearchNewsFragment : BaseFragment<FragmentSearchNewsBinding, SearchNewsVie
         with(binding.searchNewsRecyclerView) {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = newsAdapter
-            addOnScrollListener(
-                OnScrollListener(
-                    { newsViewModel.searchNews(binding.searchNewsEditText.text.toString()) },
-                    20,
-                    LinearLayoutManager(requireContext())
-                )
-            )
         }
     }
 

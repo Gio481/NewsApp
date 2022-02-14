@@ -3,7 +3,6 @@ package com.example.newsapp.ui.news_detail
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.newsapp.R
@@ -17,9 +16,6 @@ class NewsDetailFragment : BaseFragment<FragmentNewsDetailBinding, NewsDetailVie
 
     override val bindingInflater: (inflater: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean) -> FragmentNewsDetailBinding
         get() = FragmentNewsDetailBinding::inflate
-
-    private lateinit var navController: NavController
-
 
     override fun getViewModelClass(): Class<NewsDetailViewModel> = NewsDetailViewModel::class.java
 
@@ -47,16 +43,16 @@ class NewsDetailFragment : BaseFragment<FragmentNewsDetailBinding, NewsDetailVie
     }
 
     private fun setListener() {
-        binding.favoriteNewsActionButton.setOnClickListener {
-            lifecycleScope.launch {
-                if (newsViewModel.checkSavedArticle(args.article.url)) {
-                    binding.favoriteNewsActionButton.setImageResource(R.drawable.ic_favorite)
-                } else {
-                    binding.favoriteNewsActionButton.setImageResource(R.drawable.ic_delete)
+        with(binding) {
+            with(newsViewModel) {
+                favoriteNewsActionButton.setOnClickListener {
+                    lifecycleScope.launch {
+                        favoriteNewsActionButton.setImageResource(
+                            if (checkSavedArticle(args.article.url)) R.drawable.ic_favorite else R.drawable.ic_delete)
+                    }
+                    determineOperation(args.article, args.article.url)
                 }
             }
-            newsViewModel.determineOperation(args.article, args.article.url)
-
         }
     }
 

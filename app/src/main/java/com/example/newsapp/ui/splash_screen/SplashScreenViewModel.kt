@@ -18,10 +18,7 @@ class SplashScreenViewModel : ViewModel() {
     private val _splashScreenLiveData: MutableLiveData<String> = MutableLiveData()
     val splashScreenLiveData: LiveData<String> = _splashScreenLiveData
 
-    init {
-        getValue()
-    }
-    private fun getValue() {
+     fun getValue() {
         viewModelScope.launch(Dispatchers.IO) {
             _splashScreenLiveData.postValue(repository.getValue(ON_BOARDING_SCREEN_KEY).first())
         }

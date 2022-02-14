@@ -23,10 +23,10 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/newsImageView"
-        android:layout_width="66dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="51dp"
+        android:layout_width="@dimen/news_row_layout_image_sizes"
+        android:layout_height="@dimen/news_row_layout_image_sizes"
+        android:layout_marginStart="@dimen/news_row_layout_image_margin_start"
+        android:layout_marginTop="@dimen/news_row_layout_image_margin_top"
         android:scaleType="centerCrop"
         android:src="@drawable/default_news_photo"
         app:layout_constraintStart_toStartOf="parent"

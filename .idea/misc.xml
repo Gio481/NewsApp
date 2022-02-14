@@ -19,12 +19,13 @@
         <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/category_item_layout.xml" value="0.176" />
         <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_articles.xml" value="0.18703703703703703" />
-        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_news.xml" value="0.176" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_news.xml" value="0.264" />
         <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_news_detail.xml" value="0.176" />
         <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_on_boarding.xml" value="0.152" />
         <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_on_boarding_end.xml" value="0.2" />
-        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_on_boarding_middle.xml" value="0.264" />
-        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_on_boarding_start.xml" value="0.178125" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_on_boarding_finish.xml" value="0.2" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_on_boarding_middle.xml" value="0.152" />
+        <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_on_boarding_start.xml" value="0.16" />
         <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_saved_news.xml" value="0.2" />
         <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_search_news.xml" value="0.16799999999999998" />
         <entry key="..\:/Users/noe/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_splash_screen.xml" value="0.24010416666666667" />

@@ -10,7 +10,7 @@
         android:id="@+id/onBoardingMiddleImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/on_boarding_image_margin_top"
+        app:layout_constraintBottom_toTopOf="@id/onBoardingTextView"
         android:src="@drawable/on_boarding"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,19 +19,17 @@
     <View
         android:layout_width="@dimen/on_boarding_middle_icon_size"
         android:layout_height="@dimen/on_boarding_middle_icon_size"
-        android:layout_marginEnd="@dimen/on_boarding_icon_margin_end"
-        android:layout_marginBottom="@dimen/on_boarding_icon_margin_bottom"
         android:background="@drawable/ic_search"
         android:backgroundTint="@color/on_boarding_icon_color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@id/onBoardingMiddleImageView"
+        app:layout_constraintEnd_toEndOf="@id/onBoardingMiddleImageView" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/onBoardingTextView"
+        app:layout_constraintBottom_toTopOf="@id/middleOnBoardingNextButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/on_boarding_text_view_margin_start"
-        android:layout_marginTop="@dimen/on_boarding_text_view_margin_top"
         android:layout_marginEnd="@dimen/on_boarding_text_view_margin_end"
         android:text="@string/on_boarding_middle_text"
         android:textColor="@color/black"

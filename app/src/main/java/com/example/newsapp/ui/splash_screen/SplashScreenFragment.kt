@@ -20,17 +20,14 @@ class SplashScreenFragment : BaseFragment<FragmentSplashScreenBinding, SplashScr
         SplashScreenViewModel::class.java
 
     override fun init() {
+        newsViewModel.getValue()
         makeAnimation()
         observeSplashScreenLiveData()
     }
 
     private fun observeSplashScreenLiveData() {
         newsViewModel.splashScreenLiveData.observe(viewLifecycleOwner) {
-            if (it.toBoolean()) {
-                determineNavigation(NAVIGATE_NEWS)
-            } else {
-                determineNavigation(NAVIGATE_ON_BOARDING)
-            }
+            determineNavigation(if (it.toBoolean()) NAVIGATE_NEWS else NAVIGATE_ON_BOARDING)
         }
     }
 
@@ -40,6 +37,7 @@ class SplashScreenFragment : BaseFragment<FragmentSplashScreenBinding, SplashScr
             rotation(LOGO_ROTATION)
         }
     }
+
 
     private fun determineNavigation(destination: Int) {
         lifecycleScope.launch {

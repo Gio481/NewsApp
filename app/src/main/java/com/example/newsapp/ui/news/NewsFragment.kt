@@ -10,22 +10,25 @@ import com.example.newsapp.model.Articles
 import com.example.newsapp.ui.adapter.NewsAdapter
 import com.example.newsapp.ui.adapter.OnItemClickListener
 import com.example.newsapp.ui.base.BaseFragment
-import com.example.newsapp.ui.news.adapter.Category
 import com.example.newsapp.ui.news.adapter.CategoryAdapter
 import com.example.newsapp.ui.news.adapter.OnCategoryItemListener
+import com.example.newsapp.ui.news.adapter.model.Category
 import com.example.newsapp.util.extensions.string.showToast
 
-class NewsFragment : BaseFragment<FragmentNewsBinding, NewsVideModel>(), OnItemClickListener,
+class NewsFragment : BaseFragment<FragmentNewsBinding, NewsViewModel>(), OnItemClickListener,
     OnCategoryItemListener {
     override val bindingInflater: (inflater: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean) -> FragmentNewsBinding
         get() = FragmentNewsBinding::inflate
 
-    override fun getViewModelClass(): Class<NewsVideModel> = NewsVideModel::class.java
+    override fun getViewModelClass(): Class<NewsViewModel> = NewsViewModel::class.java
 
     private val newsAdapter by lazy { NewsAdapter(this) }
+
+
     private val categoryAdapter by lazy { CategoryAdapter(this) }
 
     override fun init() {
+        newsViewModel.getCustomCategoryNews(DEFAULT_CATEGORY)
         isShownProgressBar(true)
         setUpNewsRecyclerView()
         observeSuccessLiveData()
@@ -33,6 +36,7 @@ class NewsFragment : BaseFragment<FragmentNewsBinding, NewsVideModel>(), OnItemC
         setUpCategoriesRecyclerView()
         categoryAdapter.submitList(CATEGORIES)
     }
+
 
 
     private fun observeSuccessLiveData() {
@@ -79,16 +83,14 @@ class NewsFragment : BaseFragment<FragmentNewsBinding, NewsVideModel>(), OnItemC
         newsViewModel.getCustomCategoryNews(category)
     }
 
-
     companion object {
-        val CATEGORIES = listOf(
+        private const val DEFAULT_CATEGORY = "business"
+        private val CATEGORIES = listOf(
             Category("business"),
             Category("sports"),
             Category("technology"),
             Category("science")
         )
-        private const val PRESSED_CATEGORY_TEXT_COLOR = "#FF4E4E"
-        private const val UNPRESSED_CATEGORY_TEXT_COLOR = "#5E5C5B"
     }
 
 
