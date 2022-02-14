@@ -37,7 +37,7 @@ class OnBoardingFragment : BaseFragment<FragmentOnBoardingBinding, OnBoardingVie
     }
 
     override fun init() {
-        newsViewModel.saveValue()
+        newsViewModel.saveOnBoardingValue()
         setUpOnBoardingViewPager()
     }
 

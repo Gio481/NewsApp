@@ -9,7 +9,6 @@ import com.example.newsapp.databinding.CategoryItemLayoutBinding
 import com.example.newsapp.ui.news.adapter.model.Category
 import com.example.newsapp.util.ItemsDiffUtil
 
-
 class CategoryAdapter(private val onCategoryItemListener: OnCategoryItemListener) :
     ListAdapter<Category, CategoryAdapter.ViewHolder>(ItemsDiffUtil<Category>()) {
 
