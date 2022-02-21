@@ -10,34 +10,34 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/newsDetailFragmentToolBar"
         android:layout_width="match_parent"
-        android:layout_height="61dp"
-        android:background="#FF4B5C"
+        android:layout_height="@dimen/news_detail_toolbar_height"
+        android:background="@color/app_items_dark"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/backButton"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:id="@+id/newsDetailBackButton"
+            android:layout_width="@dimen/back_button_sizes"
+            android:layout_height="@dimen/back_button_sizes"
             android:background="@drawable/ic_back" />
+
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/newsNameTextView"
             android:layout_width="wrap_content"
+            android:layout_marginStart="@dimen/news_detail_name_text_view_margin_start"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:text="SSG NEWS"
             android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textSize="@dimen/news_detail_name_text_view_size"
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/newsImageView"
-        android:layout_width="109dp"
-        android:layout_height="109dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="27dp"
+        android:layout_width="@dimen/news_detail_image_sizes"
+        android:layout_height="@dimen/news_detail_image_sizes"
+        android:layout_marginStart="@dimen/news_detail_image_margin_start"
+        android:layout_marginTop="@dimen/news_detail_image_margin_top"
         android:scaleType="centerCrop"
         android:src="@drawable/default_news_photo"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,15 +46,14 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/newsTitleTextView"
-        android:layout_width="200dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="25dp"
+        android:layout_width="@dimen/news_detail_title_text_view_width"
+        android:layout_height="@dimen/news_detail_title_text_view_height"
+        android:layout_marginTop="@dimen/news_detail_title_text_view_margin_top"
         android:autoSizeTextType="uniform"
         android:gravity="center"
-        android:padding="7dp"
-        android:text="European bond yields soar on tightening talk, U.S. stock futures dip - Reuters"
+        android:padding="@dimen/news_detail_title_text_view_padding"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="@dimen/news_detail_title_text_view_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/newsImageView"
@@ -63,17 +62,17 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/newsDescriptionTextView"
-        android:layout_width="350dp"
-        android:layout_height="320dp"
-        android:layout_marginTop="34dp"
+        android:layout_width="@dimen/news_detail_description_text_view_width"
+        android:layout_height="@dimen/news_detail_description_text_view_height"
+        android:layout_marginTop="@dimen/news_detail_description_text_view_margin_top"
         android:autoSizeTextType="uniform"
         android:background="@drawable/news_article_layout"
-        android:elevation="10dp"
+        android:layout_marginBottom="@dimen/news_detail_description_text_view_margin_bottom"
         android:gravity="center"
-        android:padding="7dp"
-        android:layout_marginBottom="50dp"
-        android:textColor="#656565"
-        android:textSize="24sp"
+        android:elevation="@dimen/news_detail_description_text_view_elevation"
+        android:padding="@dimen/news_detail_description_text_view_padding"
+        android:textColor="@color/news_detail_description_text_view_color"
+        android:textSize="@dimen/news_detail_description_text_view_size"
         app:layout_constraintBottom_toTopOf="@id/favoriteNewsActionButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,12 +81,12 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/favoriteNewsActionButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="24dp"
+        android:layout_width="@dimen/news_detail_favorite_button_size"
+        android:layout_height="@dimen/news_detail_favorite_button_size"
+        android:layout_marginBottom="@dimen/news_detail_favorite_button_margin_bottom"
         app:srcCompat="@drawable/ic_favorite"
-        app:backgroundTint="#FF4B5C"
-        app:fabCustomSize="60dp"
+        app:backgroundTint="@color/app_items_dark"
+        app:fabCustomSize="@dimen/news_detail_favorite_button_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -3,9 +3,10 @@ package com.example.newsapp.model
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.newsapp.db.NewsDatabase.Companion.NEWS_DATABASE_TABLE_NAME
 
 @kotlinx.parcelize.Parcelize
-@Entity(tableName = "news")
+@Entity(tableName = NEWS_DATABASE_TABLE_NAME)
 data class Articles(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
@@ -16,9 +17,7 @@ data class Articles(
     val url: String,
     val urlToImage: String? = null,
     val publishedAt: String,
-    val content: String?,
-    var isFavorite: Boolean = false
-
+    val content: String?
 ) : Parcelable {
     fun getNewsPublishedTime(): String {
         return publishedAt.slice(0..9)

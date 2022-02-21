@@ -30,8 +30,8 @@ class SearchNewsFragment : BaseFragment<FragmentSearchNewsBinding, SearchNewsVie
 
     private fun searchNews() {
         binding.searchNewsEditText.addTextChangedListener {
-            isShownProgressBar(true)
-            newsViewModel.searchNews(it.toString())
+                isShownProgressBar(it!!.isNotBlank())
+                newsViewModel.searchNews(it.toString())
         }
     }
 
@@ -45,7 +45,7 @@ class SearchNewsFragment : BaseFragment<FragmentSearchNewsBinding, SearchNewsVie
     private fun observeSearchNewsLiveData() {
         newsViewModel.successNewsLiveData.observe(viewLifecycleOwner) {
             isShownProgressBar(false)
-            newsAdapter.submitList(it.articles)
+            newsAdapter.submitList(it.articles.toList())
         }
     }
 

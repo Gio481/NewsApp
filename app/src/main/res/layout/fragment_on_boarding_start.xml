@@ -10,34 +10,35 @@
         android:id="@+id/onBoardingStartImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
         android:src="@drawable/on_boarding"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/onBoardingTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/onBoardingTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="15dp"
+        app:layout_constraintBottom_toTopOf="@id/startOnBoardingNextButton"
+        android:layout_marginStart="@dimen/on_boarding_text_view_margin_start"
+        android:layout_marginEnd="@dimen/on_boarding_text_view_margin_end"
         android:text="@string/on_boarding_start_text"
-        android:textColor="#000000"
-        android:textSize="32sp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/on_boarding_text_view_size"
         app:layout_constraintTop_toBottomOf="@id/onBoardingStartImageView" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/startOnBoardingNextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="@dimen/on_boarding_button_margin_end"
+        android:layout_marginBottom="@dimen/on_boarding_button_margin_bottom"
         android:background="@android:color/transparent"
-        android:text="next"
+        android:text="@string/on_boarding_next_button_text"
         android:textAllCaps="false"
-        android:textColor="#FF4B5C"
-        android:textSize="24sp"
+        android:textColor="@color/app_items_dark"
+        android:textSize="@dimen/on_boarding_button_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

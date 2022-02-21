@@ -38,11 +38,11 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
     }
 
     abstract fun init()
+
     abstract fun getViewModelClass(): Class<VM>
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

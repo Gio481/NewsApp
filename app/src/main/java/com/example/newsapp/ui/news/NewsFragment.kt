@@ -1,9 +1,7 @@
 package com.example.newsapp.ui.news
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,24 +10,33 @@ import com.example.newsapp.model.Articles
 import com.example.newsapp.ui.adapter.NewsAdapter
 import com.example.newsapp.ui.adapter.OnItemClickListener
 import com.example.newsapp.ui.base.BaseFragment
+import com.example.newsapp.ui.news.adapter.CategoryAdapter
+import com.example.newsapp.ui.news.adapter.OnCategoryItemListener
+import com.example.newsapp.ui.news.adapter.model.Category
 import com.example.newsapp.util.extensions.string.showToast
 
-class NewsFragment : BaseFragment<FragmentNewsBinding, NewsVideModel>(), OnItemClickListener {
+class NewsFragment : BaseFragment<FragmentNewsBinding, NewsViewModel>(), OnItemClickListener,
+    OnCategoryItemListener {
     override val bindingInflater: (inflater: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean) -> FragmentNewsBinding
         get() = FragmentNewsBinding::inflate
 
-    override fun getViewModelClass(): Class<NewsVideModel> = NewsVideModel::class.java
+    override fun getViewModelClass(): Class<NewsViewModel> = NewsViewModel::class.java
 
     private val newsAdapter by lazy { NewsAdapter(this) }
 
+
+    private val categoryAdapter by lazy { CategoryAdapter(this) }
+
     override fun init() {
-        binding.businessNewsTextView.paint.isUnderlineText = true
+        newsViewModel.getCustomCategoryNews(DEFAULT_CATEGORY)
         isShownProgressBar(true)
-        setUpRecyclerView()
+        setUpNewsRecyclerView()
         observeSuccessLiveData()
         observeErrorLiveData()
-        getNewsFromCategory()
+        setUpCategoriesRecyclerView()
+        categoryAdapter.submitList(CATEGORIES)
     }
+
 
 
     private fun observeSuccessLiveData() {
@@ -46,62 +53,18 @@ class NewsFragment : BaseFragment<FragmentNewsBinding, NewsVideModel>(), OnItemC
         }
     }
 
-    private fun getNewsFromCategory() {
-        with(binding) {
-
-            determineNewsCategory(
-                businessNewsTextView,
-                listOf(techNewsTextView, sportNewsTextView, scienceNewsTextView),
-                CATEGORY_BUSINESS
-            )
-            determineNewsCategory(
-                techNewsTextView,
-                listOf(businessNewsTextView, sportNewsTextView, scienceNewsTextView),
-                CATEGORY_TECH
-            )
-            determineNewsCategory(
-                sportNewsTextView,
-                listOf(techNewsTextView, businessNewsTextView, scienceNewsTextView),
-                CATEGORY_SPORTS
-            )
-            determineNewsCategory(
-                scienceNewsTextView,
-                listOf(techNewsTextView, sportNewsTextView, businessNewsTextView),
-                CATEGORY_SCIENCE
-            )
-        }
-    }
-
-    private fun determineNewsCategory(
-        textView: TextView,
-        otherCategory: List<TextView>,
-        category: String
-    ) {
-        textView.setOnClickListener {
-            changeTextView(textView, otherCategory)
-            getNews(category)
-        }
-    }
-
-    private fun getNews(category: String) {
-        isShownProgressBar(true)
-        newsViewModel.getCustomCategoryNews(category)
-    }
-
-    private fun changeTextView(textView: TextView, otherCategory: List<TextView>) {
-        textView.paint.isUnderlineText = true
-        textView.setTextColor(Color.parseColor("#FF4E4E"))
-        otherCategory.forEach {
-            it.setTextColor(Color.parseColor("#5E5C5B"))
-            it.paint.isUnderlineText = false
-        }
-    }
-
-    private fun setUpRecyclerView() {
+    private fun setUpNewsRecyclerView() {
         with(binding.newsRecyclerView) {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = newsAdapter
+        }
+    }
 
+    private fun setUpCategoriesRecyclerView() {
+        with(binding.categoryRecyclerView) {
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = categoryAdapter
         }
     }
 
@@ -115,10 +78,20 @@ class NewsFragment : BaseFragment<FragmentNewsBinding, NewsVideModel>(), OnItemC
         )
     }
 
-    companion object {
-        private const val CATEGORY_BUSINESS = "business"
-        private const val CATEGORY_SPORTS = "sports"
-        private const val CATEGORY_TECH = "technology"
-        private const val CATEGORY_SCIENCE = "science"
+    override fun onCategoryItemClick(category: String) {
+        isShownProgressBar(true)
+        newsViewModel.getCustomCategoryNews(category)
     }
+
+    companion object {
+        private const val DEFAULT_CATEGORY = "business"
+        private val CATEGORIES = listOf(
+            Category("business"),
+            Category("sports"),
+            Category("technology"),
+            Category("science")
+        )
+    }
+
+
 }

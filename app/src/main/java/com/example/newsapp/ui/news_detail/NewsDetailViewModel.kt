@@ -5,44 +5,46 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.newsapp.App
+import com.example.newsapp.R
 import com.example.newsapp.model.Articles
-import com.example.newsapp.repository.news_detail.NewsDetailRepository
-import com.example.newsapp.repository.news_detail.NewsDetailRepositoryImpl
+import com.example.newsapp.repositories.news_detail.NewsDetailRepository
+import com.example.newsapp.repositories.news_detail.NewsDetailRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class NewsDetailViewModel : ViewModel() {
     private val repository: NewsDetailRepository by lazy { NewsDetailRepositoryImpl(App.db.newsDao()) }
-    private val _isFavoriteItemLiveData: MutableLiveData<List<String>> = MutableLiveData()
-    val urlList: LiveData<List<String>> = _isFavoriteItemLiveData
 
-    init {
+    private val _backgroundLiveData: MutableLiveData<Int> = MutableLiveData()
+    val backgroundLiveData: LiveData<Int> = _backgroundLiveData
+
+    suspend fun checkSavedArticle(url: String): Boolean = url in repository.getNewsUrl()
+
+    fun determineOperation(articles: Articles, url: String) {
         viewModelScope.launch {
-            _isFavoriteItemLiveData.postValue(repository.getNewsUrl())
+            if (checkSavedArticle(url)) {
+                deleteArticles(url)
+            } else {
+                insertArticle(articles)
+            }
         }
     }
 
-    fun determineOperation(articles: Articles) {
-        if (!articles.isFavorite) {
-            insertArticle(articles)
-        } else {
-            deleteArticles(articles)
-        }
+    private suspend fun insertArticle(articles: Articles) {
+        repository.insertArticles(articles)
     }
 
-    private fun insertArticle(articles: Articles) {
-        articles.isFavorite = !articles.isFavorite
+    private suspend fun deleteArticles(url: String) {
+        repository.deleteArticle(url)
+    }
+
+    fun checkArticle(url: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.insertArticles(articles)
-        }
-    }
-
-    private fun deleteArticles(articles: Articles) {
-        articles.isFavorite = !articles.isFavorite
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteArticle(articles)
-            repository.updateArticle(articles)
-
+            if (checkSavedArticle(url)) {
+                _backgroundLiveData.postValue(R.drawable.ic_delete)
+            } else {
+                _backgroundLiveData.postValue(R.drawable.ic_favorite)
+            }
         }
     }
 }
