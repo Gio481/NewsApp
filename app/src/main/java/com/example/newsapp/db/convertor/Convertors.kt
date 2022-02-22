@@ -1,7 +1,6 @@
 package com.example.newsapp.db.convertor
 
 import androidx.room.TypeConverter
-import com.example.newsapp.model.Articles
 import com.example.newsapp.model.Source
 
 class Convertors {

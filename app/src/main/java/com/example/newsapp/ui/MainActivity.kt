@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpBottomNav()
+
     }
 
     private fun setUpBottomNav() {
@@ -28,9 +29,10 @@ class MainActivity : AppCompatActivity() {
     private fun setListener() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.splashScreenFragment -> binding.bottomNavView.isVisible=false
-                R.id.newsDetailFragment -> binding.bottomNavView.isVisible=false
-                else -> binding.bottomNavView.isVisible=true
+                R.id.splashScreenFragment -> binding.bottomAppBar.isVisible = false
+                R.id.newsDetailFragment -> binding.bottomAppBar.isVisible = false
+                R.id.onBoardingFragment -> binding.bottomAppBar.isVisible = false
+                else -> binding.bottomAppBar.isVisible = true
             }
         }
     }

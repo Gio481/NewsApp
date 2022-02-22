@@ -1,18 +1,16 @@
-package com.example.newsapp.repository.news
+package com.example.newsapp.repositories.search_news
 
 import com.example.newsapp.api.RetrofitInstance.newsApi
 import com.example.newsapp.model.NewsResponse
 import com.example.newsapp.util.Resources
 
-class NewsRepositoryImpl : NewsRepository {
-    override suspend fun getCustomCategoryNews(
+class SearchNewsRepositoryImpl : SearchNewsRepository {
+    override suspend fun getSearchedNews(
         page: Int,
-        apiKey: String,
-        category: String
+        q: String
     ): Resources<NewsResponse> {
         return try {
-            val response =
-                newsApi.getCustomCategoryNews(page = page, apiKey = apiKey, category = category)
+            val response = newsApi.getSearchedNews(page = page,q = q)
             if (response.isSuccessful) {
                 Resources.Success(response.body())
             } else {
@@ -22,4 +20,5 @@ class NewsRepositoryImpl : NewsRepository {
             Resources.Error(e.message)
         }
     }
+
 }

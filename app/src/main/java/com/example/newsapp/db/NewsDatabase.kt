@@ -19,7 +19,11 @@ abstract class NewsDatabase : RoomDatabase() {
         fun buildNewsDatabase(context: Context): NewsDatabase = Room.databaseBuilder(
             context,
             NewsDatabase::class.java,
-            "news.db"
+            NEWS_DATABASE_NAME
         ).build()
+
+        private const val NEWS_DATABASE_NAME = "news.db"
+        const val NEWS_DATABASE_TABLE_NAME = "news"
     }
+
 }

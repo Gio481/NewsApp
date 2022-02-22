@@ -12,7 +12,6 @@ import com.example.newsapp.util.extensions.image_view.setImage
 class NewsAdapter(private val onItemClickListener: OnItemClickListener) :
     ListAdapter<Articles, NewsAdapter.ViewHolder>(ItemsDiffUtil<Articles>()) {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             NewsRowLayoutBinding.inflate(
@@ -33,7 +32,7 @@ class NewsAdapter(private val onItemClickListener: OnItemClickListener) :
             with(binding) {
                 newsTitleTextView.text = articles.title
                 newsSubjectTextView.text = articles.source.name
-                newsDateTextView.text = articles.publishedAt
+                newsDateTextView.text = articles.getNewsPublishedTime()
                 newsImageView.setImage(articles.urlToImage)
                 newsRowLayout.setOnClickListener {
                     onItemClickListener.onItemCLick(articles)

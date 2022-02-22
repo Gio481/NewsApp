@@ -8,15 +8,23 @@
     tools:context=".ui.splash_screen.SplashScreenFragment">
 
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <View
+        android:id="@+id/splashScreenLogo"
+        android:layout_width="@dimen/splash_screen_size"
+        android:layout_height="@dimen/splash_screen_size"
+        android:background="@drawable/splash_screen_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/splash_screen_logo"
         android:fontFamily="sans-serif-condensed-light"
-        android:gravity="center"
-        android:text="Welcome"
-        android:textColor="#E3E3E3"
-        android:textSize="30sp"
+        android:text="@string/splash_scree_text"
+        android:textColor="@color/white"
+        android:textSize="@dimen/splash_screen_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -5,26 +5,46 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.newsapp.App
+import com.example.newsapp.R
 import com.example.newsapp.model.Articles
-import com.example.newsapp.model.NewsResponse
-import com.example.newsapp.repository.news_detail.NewsDetailRepository
-import com.example.newsapp.repository.news_detail.NewsDetailRepositoryImpl
+import com.example.newsapp.repositories.news_detail.NewsDetailRepository
+import com.example.newsapp.repositories.news_detail.NewsDetailRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class NewsDetailViewModel : ViewModel() {
     private val repository: NewsDetailRepository by lazy { NewsDetailRepositoryImpl(App.db.newsDao()) }
 
-    private val _successNewsLiveData: MutableLiveData<Articles> = MutableLiveData()
-    val successNewsLiveData: LiveData<Articles> get() = _successNewsLiveData
+    private val _backgroundLiveData: MutableLiveData<Int> = MutableLiveData()
+    val backgroundLiveData: LiveData<Int> = _backgroundLiveData
 
-    private val _errorLiveData: MutableLiveData<String> = MutableLiveData()
-    val errorLiveData: MutableLiveData<String> get() = _errorLiveData
+    suspend fun checkSavedArticle(url: String): Boolean = url in repository.getNewsUrl()
 
-    fun insertArticle(articles: Articles) {
+    fun determineOperation(articles: Articles, url: String) {
+        viewModelScope.launch {
+            if (checkSavedArticle(url)) {
+                deleteArticles(url)
+            } else {
+                insertArticle(articles)
+            }
+        }
+    }
+
+    private suspend fun insertArticle(articles: Articles) {
+        repository.insertArticles(articles)
+    }
+
+    private suspend fun deleteArticles(url: String) {
+        repository.deleteArticle(url)
+    }
+
+    fun checkArticle(url: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.insertArticles(articles)
-
+            if (checkSavedArticle(url)) {
+                _backgroundLiveData.postValue(R.drawable.ic_delete)
+            } else {
+                _backgroundLiveData.postValue(R.drawable.ic_favorite)
+            }
         }
     }
 }

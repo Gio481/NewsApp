@@ -1,78 +1,97 @@
 package com.example.newsapp.ui.news
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.newsapp.R
 import com.example.newsapp.databinding.FragmentNewsBinding
 import com.example.newsapp.model.Articles
 import com.example.newsapp.ui.adapter.NewsAdapter
 import com.example.newsapp.ui.adapter.OnItemClickListener
 import com.example.newsapp.ui.base.BaseFragment
-import com.example.newsapp.util.Constants.ARTICLES_KEY
+import com.example.newsapp.ui.news.adapter.CategoryAdapter
+import com.example.newsapp.ui.news.adapter.OnCategoryItemListener
+import com.example.newsapp.ui.news.adapter.model.Category
 import com.example.newsapp.util.extensions.string.showToast
 
-class NewsFragment : BaseFragment<FragmentNewsBinding, NewsVideModel>(), OnItemClickListener {
+class NewsFragment : BaseFragment<FragmentNewsBinding, NewsViewModel>(), OnItemClickListener,
+    OnCategoryItemListener {
     override val bindingInflater: (inflater: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean) -> FragmentNewsBinding
         get() = FragmentNewsBinding::inflate
 
-    override fun getViewModelClass(): Class<NewsVideModel> = NewsVideModel::class.java
+    override fun getViewModelClass(): Class<NewsViewModel> = NewsViewModel::class.java
 
     private val newsAdapter by lazy { NewsAdapter(this) }
+
+
+    private val categoryAdapter by lazy { CategoryAdapter(this) }
+
     override fun init() {
-        setUpRecyclerView()
-        observeErrorLiveData()
+        newsViewModel.getCustomCategoryNews(DEFAULT_CATEGORY)
+        isShownProgressBar(true)
+        setUpNewsRecyclerView()
         observeSuccessLiveData()
-        setListener()
+        observeErrorLiveData()
+        setUpCategoriesRecyclerView()
+        categoryAdapter.submitList(CATEGORIES)
     }
 
-    private fun setListener() {
-        with(binding) {
-            businessNewsTextView.setOnClickListener {
-                newsViewModel.getCustomCategoryNews("business")
-            }
-            techNewsTextView.setOnClickListener {
-                newsViewModel.getCustomCategoryNews("technology")
-            }
-            sportNewsTextView.setOnClickListener {
-                newsViewModel.getCustomCategoryNews("sport")
-            }
-            scienceNewsTextView.setOnClickListener {
-                newsViewModel.getCustomCategoryNews("science")
-            }
-        }
-    }
 
 
     private fun observeSuccessLiveData() {
         newsViewModel.successNewsLiveData.observe(viewLifecycleOwner) {
+            isShownProgressBar(false)
             newsAdapter.submitList(it.articles)
         }
     }
 
     private fun observeErrorLiveData() {
         newsViewModel.errorLiveData.observe(viewLifecycleOwner) {
-           it.showToast(requireContext())
+            isShownProgressBar(false)
+            it.showToast(requireContext())
         }
     }
 
-
-    private fun setUpRecyclerView() {
+    private fun setUpNewsRecyclerView() {
         with(binding.newsRecyclerView) {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = newsAdapter
-
         }
+    }
+
+    private fun setUpCategoriesRecyclerView() {
+        with(binding.categoryRecyclerView) {
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = categoryAdapter
+        }
+    }
+
+    private fun isShownProgressBar(boolean: Boolean) {
+        binding.customProgressBar.isVisible = boolean
     }
 
     override fun onItemCLick(article: Articles) {
         findNavController().navigate(
             NewsFragmentDirections.actionNewsFragmentToNewsDetailFragment(article)
-
         )
     }
+
+    override fun onCategoryItemClick(category: String) {
+        isShownProgressBar(true)
+        newsViewModel.getCustomCategoryNews(category)
+    }
+
+    companion object {
+        private const val DEFAULT_CATEGORY = "business"
+        private val CATEGORIES = listOf(
+            Category("business"),
+            Category("sports"),
+            Category("technology"),
+            Category("science")
+        )
+    }
+
 
 }

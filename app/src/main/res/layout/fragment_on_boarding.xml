@@ -3,7 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.show_articles.ArticlesFragment">
+    android:background="@color/fragments_background_color"
+    tools:context=".ui.on_boarding.OnBoardingFragment">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/onBoardingViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

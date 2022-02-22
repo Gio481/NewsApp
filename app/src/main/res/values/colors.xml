@@ -8,6 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="fragments_background_color">#FFEFEF</color>
-    <color name="app_items_color">#FF4E4E</color>
+    <color name="app_items_light">#FF4E4E</color>
     <color name="api_category_color">#5E5C5B</color>
-</resources>
+    <color name="app_items_dark">#FF4B5C</color>
+    <color name="news_detail_description_text_view_color">#656565</color>
+    <color name="on_boarding_icon_color">#FEB4B4</color>
+    <color name="search_edit_text_color">#656565</color>
+    <color name="articles_layout_subject_text_view_color">#656565</color>
+    ]</resources>
