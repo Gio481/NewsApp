@@ -1,17 +1,17 @@
 package com.example.newsapp.repositories.news
 
-import com.example.newsapp.api.RetrofitInstance.newsApi
+import com.example.newsapp.network.NewsApiService
 import com.example.newsapp.model.NewsResponse
 import com.example.newsapp.util.Resources
 
-class NewsRepositoryImpl : NewsRepository {
+class NewsRepositoryImpl(private val newsApiService: NewsApiService) : NewsRepository {
     override suspend fun getCustomCategoryNews(
         page: Int,
         category: String
     ): Resources<NewsResponse> {
         return try {
             val response =
-                newsApi.getCustomCategoryNews(page = page, category = category)
+                newsApiService.getCustomCategoryNews(page = page, category = category)
             if (response.isSuccessful) {
                 Resources.Success(response.body())
             } else {

@@ -1,24 +1,22 @@
 package com.example.newsapp
 
 import android.app.Application
-import com.example.newsapp.datastore.OnBoardingDataStore
-import com.example.newsapp.db.NewsDatabase
+import com.example.newsapp.di.*
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
 class App : Application() {
-
-    companion object {
-        private lateinit var context: App
-        val db: NewsDatabase by lazy {
-            NewsDatabase.buildNewsDatabase(context)
-        }
-        val dataStore:OnBoardingDataStore by lazy {
-            OnBoardingDataStore(context)
-        }
-
-    }
-
     override fun onCreate() {
         super.onCreate()
-        context = this
+        startKoin {
+            androidContext(this@App)
+            modules(
+                RepositoryModule.repositoryModule,
+                NetworkModule.retrofitModule,
+                RoomDatabaseModule.databaseModule,
+                DatastoreModule.dataStoreModule,
+                ViewModelModule.viewModelModule
+            )
+        }
     }
 }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fragments_background_color"
-    tools:context=".ui.saved_news.SavedNewsFragment">
+    tools:context=".presenter.saved_news.SavedNewsFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView

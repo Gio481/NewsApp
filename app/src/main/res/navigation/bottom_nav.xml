@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/newsFragment"
-        android:name="com.example.newsapp.ui.news.NewsFragment"
+        android:name="com.example.newsapp.presenter.news.NewsFragment"
         tools:layout="@layout/fragment_news" >
         <action
             android:id="@+id/action_newsFragment_to_newsDetailFragment"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/savedNewsFragment"
-        android:name="com.example.newsapp.ui.saved_news.SavedNewsFragment"
+        android:name="com.example.newsapp.presenter.saved_news.SavedNewsFragment"
         tools:layout="@layout/fragment_saved_news" >
         <action
             android:id="@+id/action_savedNewsFragment_to_newsDetailFragment"
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchNewsFragment"
-        android:name="com.example.newsapp.ui.search_news.SearchNewsFragment"
+        android:name="com.example.newsapp.presenter.search_news.SearchNewsFragment"
         android:label="fragment_search_news"
         tools:layout="@layout/fragment_search_news" >
         <action
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/newsDetailFragment"
-        android:name="com.example.newsapp.ui.news_detail.NewsDetailFragment"
+        android:name="com.example.newsapp.presenter.news_detail.NewsDetailFragment"
         tools:layout="@layout/fragment_news_detail" >
 
         <argument
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.example.newsapp.ui.splash_screen.SplashScreenFragment"
+        android:name="com.example.newsapp.presenter.splash_screen.SplashScreenFragment"
         tools:layout="@layout/fragment_splash_screen" >
         <action
             android:id="@+id/action_splashScreenFragment_to_newsFragment"
@@ -61,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/onBoardingFragment"
-        android:name="com.example.newsapp.ui.on_boarding.OnBoardingFragment"
+        android:name="com.example.newsapp.presenter.on_boarding.OnBoardingFragment"
         android:label="fragment_on_boarding"
         tools:layout="@layout/fragment_on_boarding" >
         <action

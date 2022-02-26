@@ -1,0 +1,58 @@
+package com.example.newsapp.presenter.splash_screen
+
+import android.annotation.SuppressLint
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.newsapp.R
+import com.example.newsapp.databinding.FragmentSplashScreenBinding
+import com.example.newsapp.presenter.base.BaseFragment
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+
+@SuppressLint("CustomSplashScreen")
+class SplashScreenFragment : BaseFragment<FragmentSplashScreenBinding, SplashScreenViewModel>() {
+    override val bindingInflater: (inflater: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean) -> FragmentSplashScreenBinding
+        get() = FragmentSplashScreenBinding::inflate
+
+    override val newsViewModel: SplashScreenViewModel by sharedViewModel()
+
+    override fun init() {
+        newsViewModel.getValue()
+        makeAnimation()
+        observeSplashScreenLiveData()
+    }
+
+    private fun observeSplashScreenLiveData() {
+        newsViewModel.splashScreenLiveData.observe(viewLifecycleOwner) {
+            determineNavigation(if (it.toBoolean()) NAVIGATE_NEWS else NAVIGATE_ON_BOARDING)
+        }
+    }
+
+    private fun makeAnimation() {
+        with(binding.splashScreenLogo.animate()) {
+            duration = ANIMATION_DURATION
+            rotation(LOGO_ROTATION)
+        }
+    }
+
+
+    private fun determineNavigation(destination: Int) {
+        lifecycleScope.launch {
+            delay(DELAY)
+            findNavController().navigate(destination)
+        }
+    }
+
+    companion object {
+        private const val NAVIGATE_ON_BOARDING =
+            R.id.action_splashScreenFragment_to_onBoardingFragment
+        private const val NAVIGATE_NEWS = R.id.action_splashScreenFragment_to_newsFragment
+        private const val DELAY = 3000L
+        private const val ANIMATION_DURATION = 2500L
+        private const val LOGO_ROTATION = 360f
+    }
+
+}

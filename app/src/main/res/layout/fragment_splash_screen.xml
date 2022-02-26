@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fragments_background_color"
-    tools:context=".ui.splash_screen.SplashScreenFragment">
+    tools:context=".presenter.splash_screen.SplashScreenFragment">
 
 
     <View

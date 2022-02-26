@@ -3,7 +3,7 @@ package com.example.newsapp.model
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.newsapp.db.NewsDatabase.Companion.NEWS_DATABASE_TABLE_NAME
+import com.example.newsapp.di.RoomDatabaseModule.NEWS_DATABASE_TABLE_NAME
 
 @kotlinx.parcelize.Parcelize
 @Entity(tableName = NEWS_DATABASE_TABLE_NAME)
